@@ -4,8 +4,6 @@ from bs4 import BeautifulSoup, Tag
 import re
 import openai
 from io import StringIO
-import os
-from typing import List
 from decouple import config
 import json
 
@@ -34,21 +32,18 @@ def generateRules():
         return jsonify(res),200
     
     except Exception as e:
-        # Handle other exceptions appropriately
+        # Handling exceptions
         return jsonify({"error": str(e)}), 400
 
 
 
-
-
 def is_valid_html(input_string):
+    # A function that check valid RASETAG is pased
     try:
         soup = BeautifulSoup(input_string, 'html.parser')
         print("gothere..")
         return True
-
     except Exception as e:
-        # If an exception occurs during parsing, it's not valid HTML
         return False
 
 
@@ -113,6 +108,7 @@ def extractNLTRules(html_content) -> str:
 
 
 def prompt_fm(NLT_Rules):
+    # Functiom that submit prompts to model and returns a valid json rule
     fine_tuned_model_id = "ft:gpt-3.5-turbo-0613:personal:regugen:8TyfLt5J"
     openai.api_key= config('OPENAIKEY')
     response = openai.ChatCompletion.create(
@@ -131,6 +127,7 @@ def prompt_fm(NLT_Rules):
 
 
 def correctjson(fm_res):
+    # Functiom that do a prompt to correct model json respons to valid json
     openai.api_key= config('OPENAIKEY')
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
@@ -142,8 +139,8 @@ def correctjson(fm_res):
     return response["choices"][0]["message"]["content"]
 
 def is_valid_json(json_string):
+    # function that validate json output
     try:
-        # Try to parse the string as JSON
         json_object = json.loads(json_string)
         return True
 
