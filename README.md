@@ -1,2 +1,2 @@
 # ReguGenuis-Client
-A sample client that consumes the finetuned LLM
+A sample client that uses the finetuned GPT3.5 LLM
