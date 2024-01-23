@@ -32,6 +32,15 @@ def generateRules():
         # Handling exceptions
         return jsonify({"error": str(e)}), 400
 
+@app.route('/nlt/generaterules', methods=['POST'])
+def generaterulesfromNLT():
+    try:
+        NLT_Rules= request.data.decode('utf-8')
+        res = json.loads(prompt_fm(NLT_Rules))    
+        return jsonify(res),200
+    except Exception as e:
+        # Handling exceptions
+        return jsonify({"error": str(e)}), 400
 
 
 def is_valid_html(input_string):
