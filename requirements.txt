@@ -3,3 +3,4 @@ beautifulsoup4==4.10.0
 tiktoken
 python-decouple
 openai==0.28
+python-decouple 
