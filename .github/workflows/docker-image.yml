@@ -19,4 +19,4 @@ jobs:
         with:
           context: .
           push: true 
-          tags: falug/reg-genius:$(date +%s)
+          tags: falug/reg-genius:{{github.run_number}}
