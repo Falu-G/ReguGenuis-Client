@@ -6,6 +6,7 @@ import openai
 from io import StringIO
 from decouple import config
 import json
+import os
 
 app = Flask(__name__)
 
@@ -116,7 +117,7 @@ def extractNLTRules(html_content) -> str:
 def prompt_fm(NLT_Rules):
     # function that submit prompts to model and returns a valid json rule
     fine_tuned_model_id = "ft:gpt-3.5-turbo-0613:personal:regugen:8TyfLt5J"
-    openai.api_key= config('OPENAIKEY')
+    openai.api_key= os.environ.get('OPENAIKEY')
     response = openai.ChatCompletion.create(
     model=fine_tuned_model_id, 
     messages=[
@@ -134,7 +135,7 @@ def prompt_fm(NLT_Rules):
 
 def correctjson(fm_res):
     # function that do a prompt to correct model json respons to valid json
-    openai.api_key= config('OPENAIKEY')
+    openai.api_key= os.environ.get('OPENAIKEY')
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
