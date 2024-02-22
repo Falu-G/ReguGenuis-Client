@@ -10,7 +10,9 @@
 
 #CMD ["flask", "run", "--host=0.0.0.0"]
 # Use an official Python runtime as a parent image
-FROM  python:3.11-alpine
+#FROM  python:3.11-alpine
+# Use an official Python runtime as a parent image
+FROM python:3.11-alpine
 
 # Set the working directory in the container
 WORKDIR /app
