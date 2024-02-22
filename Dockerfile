@@ -22,11 +22,14 @@ ADD . /app
 RUN python -m venv venv
 RUN /bin/bash -c "source venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt"
 
+# Set the PATH environment variable to include the virtual environment's bin directory
+ENV PATH="/app/venv/bin:$PATH"
+
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
 # Define environment variable
-ENV FLASK_APP=server.py
+ENV FLASK_APP=app.py
 
 # Run flask when the container launches
 CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
