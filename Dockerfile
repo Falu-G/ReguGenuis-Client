@@ -10,7 +10,7 @@
 
 #CMD ["flask", "run", "--host=0.0.0.0"]
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM  python:3.11-alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -20,7 +20,7 @@ ADD . /app
 
 # Install any needed packages specified in requirements.txt
 RUN python -m venv venv
-RUN /bin/bash -c "source venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt"
+RUN /bin/bash -c "source venv/bin/activate && pip3 install -r requirements.txt"
 
 # Set the PATH environment variable to include the virtual environment's bin directory
 ENV PATH="/app/venv/bin:$PATH"
