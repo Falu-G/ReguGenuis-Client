@@ -10,3 +10,26 @@ Takes the RASE-tagged rule as Request and returns the Machine-readable JSON gene
 <img width="1146" alt="image" src="https://github.com/Falu-G/ReguGenuis-Client/assets/33534666/302ca804-4569-4883-a396-eeda2b08ea7a">
 
 
+# To Interact directly with the model, below is a sample function.
+
+**The model => ft:gpt-3.5-turbo-0613:personal:regugen:8TyfLt5J**
+
+OPENAIKEY api key is required for every prompts
+
+``` python code
+def prompt_fm(NLT_Rules):
+    # function that submit prompts to model and returns a json rule
+    fine_tuned_model_id = "ft:gpt-3.5-turbo-0613:personal:regugen:8TyfLt5J"
+    openai.api_key= <OPENAIKEY>
+    response = openai.ChatCompletion.create(
+    model=fine_tuned_model_id, 
+    messages=[
+        {"role": "system", "content": "You are an assistant for JSON Generation of Rules"},
+        {"role": "user", "content": NLT_Rules}]
+    , temperature=0
+    )
+    fm_res=response["choices"][0]["message"]["content"]
+    print(fm_res)
+    return fm_res;
+```
+
