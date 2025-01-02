@@ -10,6 +10,7 @@ Takes the RASE-tagged rule as Request and returns the Machine-readable JSON gene
 <img width="1146" alt="image" src="https://github.com/Falu-G/ReguGenuis-Client/assets/33534666/302ca804-4569-4883-a396-eeda2b08ea7a">
 
 
+
 # To Interact directly with the model, below is a sample function.
 
 **The model => ft:gpt-3.5-turbo-0613:personal:regugen:8TyfLt5J**
